@@ -9,10 +9,13 @@ const errorsContainer = document.querySelector('.errors');
 const errorList = document.querySelector('.errors-list');
 
 //    TODO: Create an array to store all error messages and clear any old error messages
-const errorMsgs = [];
+
 // TODO: Create an event listener for when the form is submitted and do the following inside of it.
 form.addEventListener('submit', (e) => {
+  const errorMsgs = [];
+  clearErrors();
   //    TODO: Define the following validation checks with appropriate error messages
+
   //      1. Ensure the username is at least 6 characters long
   if (userNameInput.value < 6) {
     errorMsgs.push('Username has to be 6 characters long. Try again!');
@@ -35,7 +38,7 @@ form.addEventListener('submit', (e) => {
   if (errorMsgs.length > 0) {
     e.preventDefault();
     clearErrors();
-    showErrors();
+    showErrors(errorMsgs);
   }
 });
 
@@ -53,8 +56,8 @@ function clearErrors() {
 }
 
 // TODO: Define this function
-function showErrors() {
-  errorMsgs.forEach((errMsg) => {
+function showErrors(errMsgs) {
+  errMsgs.forEach((errMsg) => {
     const errorItem = document.createElement('li');
     errorItem.innerText = errMsg;
     errorList.appendChild(errorItem);
